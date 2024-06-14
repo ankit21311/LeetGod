@@ -22,3 +22,28 @@ class Solution {
         return ans ;
     }
 }
+
+
+class Solution {
+    public String makeSmallestPalindrome(String s) {
+        int n = s.length() ;
+        if(n <= 1){
+            return s ;
+        }
+        int  i = 0 , j = n-1 ;
+        
+        char[] ch = s.toCharArray() ;
+        while(i<j){
+            if(ch[i] != ch[j]){
+                if(ch[i] - 'a' < ch[j]-'a'){
+                    ch[j] = ch[i] ;
+                }else{
+                    ch[i] = ch[j] ;
+                }
+            }
+            i++ ;
+            j-- ;
+        }
+        return new String(ch);
+    }
+}
