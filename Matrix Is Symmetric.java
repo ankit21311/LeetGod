@@ -21,3 +21,22 @@ public class Solution {
         return true ;
     }
 }
+
+import java.util.* ;
+import java.io.*; 
+public class Solution {
+    public static boolean isMatrixSymmetric(int[][] matrix) {
+        int n = matrix.length;
+
+        // Check if the matrix is symmetric by comparing elements directly
+        for (int i = 0; i < n; i++) {
+            for (int j = i + 1; j < n; j++) {
+                if (matrix[i][j] != matrix[j][i]) {
+                    return false;
+                }
+            }
+        }
+        return true;
+    }
+}
+
