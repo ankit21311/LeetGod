@@ -1,3 +1,12 @@
+Majority Element :
+n/2 ======> 1
+n/3 ======> 2
+n/4 ======> 3
+
+it means n/k ======> (k-1)
+
+
+
 class Solution {
     public List<Integer> majorityElement(int[] nums) {
         HashMap<Integer,Integer> map = new HashMap<>() ;
