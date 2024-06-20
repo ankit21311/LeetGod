@@ -40,39 +40,39 @@ class Solution {
 
 
 class Solution {
-    public static int countDays(int[] bloomDay, int mid , int k){
-        int adjacentcount = 0 ;
-        int bouquecount = 0 ;
-        for(int i = 0 ; i<bloomDay.length ; i++){
-            if(bloomDay[i] <= mid){
-                adjacentcount++ ;
-            }else{
-                 adjacentcount = 0 ;
-            }
-            if( adjacentcount == k){
-                bouquecount++ ;
-                adjacentcount = 0;
+    public static int countBouquets(int[] bloomDay, int mid, int k) {
+        int adjacentCount = 0;
+        int bouquetCount = 0;
+        for (int day : bloomDay) {
+            if (day <= mid) {
+                adjacentCount++;
+                if (adjacentCount == k) {
+                    bouquetCount++;
+                    adjacentCount = 0;
+                }
+            } else {
+                adjacentCount = 0;
             }
         }
-        return  bouquecount ;
+        return bouquetCount;
     }
+
     public int minDays(int[] bloomDay, int m, int k) {
-        
-        int start = 0 , end = 0 ;
-        int n = bloomDay.length ;
-        for(int i = 0 ; i<n ; i++){
-            end = Math.max(bloomDay[i],end) ;
+        int start = 0;
+        int end = 0;
+        for (int day : bloomDay) {
+            end = Math.max(day, end);
         }
-        int ans = -1 ;
-        while(start <= end){
-            int mid = start + (end-start)/2 ;
-            if(countDays(bloomDay,mid,k) >= m){
-                ans  = mid ;
-                end = mid-1 ;
-            }else{
-                start = mid+1 ;
+        int result = -1;
+        while (start <= end) {
+            int mid = start + (end - start) / 2;
+            if (countBouquets(bloomDay, mid, k) >= m) {
+                result = mid;
+                end = mid - 1;
+            } else {
+                start = mid + 1;
             }
         }
-        return ans ;
+        return result;
     }
 }
