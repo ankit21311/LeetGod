@@ -36,3 +36,43 @@ class Solution {
         return minDays ;
     }
 }
+
+
+
+class Solution {
+    public static int countDays(int[] bloomDay, int mid , int k){
+        int adjacentcount = 0 ;
+        int bouquecount = 0 ;
+        for(int i = 0 ; i<bloomDay.length ; i++){
+            if(bloomDay[i] <= mid){
+                adjacentcount++ ;
+            }else{
+                 adjacentcount = 0 ;
+            }
+            if( adjacentcount == k){
+                bouquecount++ ;
+                adjacentcount = 0;
+            }
+        }
+        return  bouquecount ;
+    }
+    public int minDays(int[] bloomDay, int m, int k) {
+        
+        int start = 0 , end = 0 ;
+        int n = bloomDay.length ;
+        for(int i = 0 ; i<n ; i++){
+            end = Math.max(bloomDay[i],end) ;
+        }
+        int ans = -1 ;
+        while(start <= end){
+            int mid = start + (end-start)/2 ;
+            if(countDays(bloomDay,mid,k) >= m){
+                ans  = mid ;
+                end = mid-1 ;
+            }else{
+                start = mid+1 ;
+            }
+        }
+        return ans ;
+    }
+}
